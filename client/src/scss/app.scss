@@ -1,0 +1,24 @@
+@import 'fonts';
+@import 'variables';
+@import 'libs/normalize';
+
+@import 'components/all';
+
+body {
+  background-color: $background-gray;
+}
+
+.wrapper {
+  width: calc(100vw - 100px);
+  height: 100%;
+  margin: 0 auto;
+  border-radius: 10px;
+  max-width: 1380px;
+}
+
+.container {
+  width: $container-width;
+  margin: 0 auto;
+  margin-top: 30px;
+}
+

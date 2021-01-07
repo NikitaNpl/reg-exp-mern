@@ -1,0 +1,136 @@
+.cart__header-info {
+  & > svg:hover > path {
+    transition: 0.2s ease-in-out 0.3s;
+    fill: black;
+  }
+
+  &::before,
+  &::after {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &::before {
+    content: attr(data-name);
+    word-break: keep-all;
+    min-width: 30px;
+    max-width: 250px;
+    min-height: 20px;
+    font-size: 16px;
+    padding: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    background: $background-white;
+    border-radius: 10px;
+    bottom: 255px;
+    right: 8px;
+  }
+
+  &::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-color: $background-white;
+    bottom: 235px;
+    right: 21px;
+  }
+
+  &:hover::before,
+  &:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transition: 0.2s ease-in-out 0.3s;
+  }
+
+  &:hover::before {
+    bottom: 250px;
+  }
+
+  &:hover::after {
+    bottom: 230px;
+  }
+}
+
+.textarea-info {
+  & > textarea:hover {
+    background-color: $background-gray;
+  }
+
+  & > textarea:focus {
+    background-color: #fdfcfc;
+  }
+
+  &::before,
+  &::after {
+    position: absolute;
+    opacity: 0;
+    visibility: hidden;
+  }
+
+  &::before {
+    content: attr(data-name);
+    word-break: keep-all;
+    min-width: 90px;
+    max-width: 250px;
+    min-height: 20px;
+    font-size: 16px;
+    padding: 10px;
+    box-shadow: 0px 5px 10px rgba(0, 0, 0, 0.1);
+    background: $background-white;
+    border-radius: 10px;
+    bottom: 195px;
+    right: 37%;
+  }
+
+  &::after {
+    content: '';
+    width: 0;
+    height: 0;
+    border: 10px solid transparent;
+    border-top-color: $background-white;
+    bottom: 175px;
+    right: 48%;
+  }
+
+  &:hover::before,
+  &:hover::after {
+    opacity: 1;
+    visibility: visible;
+    transition: 0.2s ease-in-out 0.3s;
+  }
+
+  &:hover::before {
+    bottom: 190px;
+  }
+
+  &:hover::after {
+    bottom: 170px;
+  }
+}
+
+.cart__footer-author,
+.cart__footer-views {
+  & > svg:hover > path {
+    transition: 0.2s ease-in-out 0.3s;
+    fill: black;
+  }
+}
+
+.cart__footer-like {
+  & > img:hover {
+    cursor: pointer;
+    transition: 0.2s ease-in-out 0.3s;
+    filter: drop-shadow(0 0 10px #eb5757);
+  }
+}
+
+.input-area__helper {
+  display: none;
+  position: absolute;
+  height: 45px;
+
+  &.active {
+    display: block;
+  }
+}

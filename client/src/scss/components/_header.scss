@@ -1,0 +1,51 @@
+@import 'variables';
+
+.header {
+  
+  .container {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  &__logo {
+    h1 {
+      font-size: 36px;
+      letter-spacing: 1%;
+      font-weight: 200;
+      cursor: pointer;
+      user-select: none;
+    }
+  }
+
+  &__account {
+
+    .button__account {
+      background-color: #fff;
+      display: flex;
+      align-items: center;
+      padding: 5px 10px;
+      border: none;
+      outline: none;
+      border-radius: $mainBorder-radius;
+      border: 1px solid $gray-line;
+      cursor: pointer;
+      transition: box-shadow .2s ease-in;
+
+      &:hover {
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+      }
+
+      &:active {
+        position: relative;
+        bottom: 2px;
+      }
+
+      span {
+        font-size: 16px;
+        font-weight: bold;
+      }
+    }
+  }
+}

@@ -1,0 +1,112 @@
+{
+  "topic": [
+    {
+      "id": 1,
+      "name": "Строки",
+      "colorId": 4
+    },
+    {
+      "id": 2,
+      "name": "Почта",
+      "colorId": 5
+    },
+    {
+      "id": 3,
+      "name": "URL",
+      "colorId": 6
+    },
+    {
+      "id": 4,
+      "name": "Цифры",
+      "colorId": 2
+    },
+    {
+      "id": 5,
+      "name": "Дата и время",
+      "colorId": 3
+    },
+    {
+      "id": 6,
+      "name": "Другое",
+      "colorId": 1
+    }
+  ],
+  "carts": [
+    {
+      "id": 1,
+      "topicId": 1,
+      "colorId": 4,
+      "title": "Никнейм",
+      "description": "id1",
+      "pattern": "/^id1&/",
+      "placeholder": "NikitaNpl",
+      "id_rating": 0,
+      "id_user": 0
+    },
+    {
+      "id": 2,
+      "topicId": 2,
+      "colorId": 5,
+      "title": "E-Mail формат",
+      "description": "id2",
+      "pattern": "/^id2&/",
+      "placeholder": "mail@gmail.ru",
+      "id_rating": 0,
+      "id_user": 0
+    },
+    {
+      "id": 3,
+      "topicId": 3,
+      "colorId": 6,
+      "title": "URL с протоколом",
+      "description": "id3",
+      "pattern": "/^id3&/",
+      "placeholder": "http://www.google.com",
+      "id_rating": 0,
+      "id_user": 0
+    },
+    {
+      "id": 4,
+      "topicId": 4,
+      "colorId": 2,
+      "title": "Номер телефона",
+      "description": "id4",
+      "pattern": "/^id4&/",
+      "placeholder": "+79991234567",
+      "id_rating": 0,
+      "id_user": 0
+    }
+  ],
+  "colors": [
+    {
+      "id": 1,
+      "hex": "#d2d2d2",
+      "name": "gray"
+    },
+    {
+      "id": 2,
+      "hex": "#219653",
+      "name": "blackGreen"
+    },
+    {
+      "id": 3,
+      "hex": "#2f80ed",
+      "name": "lightBlue"
+    },
+    {
+      "id": 4,
+      "hex": "#eb5757",
+      "name": "red"
+    },
+    {
+      "id": 5,
+      "hex": "#f2994a",
+      "name": "orange"
+    },
+    {
+      "id": 6,
+      "hex": "#f2c94c",
+      "name": "yellow"
+    }
+  ]
+}
