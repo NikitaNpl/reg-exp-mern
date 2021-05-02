@@ -6,4 +6,4 @@ export { default as MainBlock } from './MainBlock';
 export { default as Button } from './Button';
 export { default as Categories } from './Categories';
 export { default as Authorization } from './Authorization';
-export { default as Registration } from './Registration';
+export { default as GitHubAuth } from './GitHubAuth';

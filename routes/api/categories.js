@@ -25,7 +25,7 @@ router.get('/', (req, res) => {
       $project: {colorId: 0}
     }
   ])
-    .then(categories => res.json(categories))
+    .then(categories => res.status(200).json(categories))
     .catch(err => res.json({ err: `${err}` }));
 });
 

@@ -5,7 +5,7 @@
   flex-wrap: wrap;
   align-items: center;
   justify-content: space-between;
-  background-color: #f9f9f9;
+  background-color: $background-white;
   border-radius: $mainBorder-radius;
   box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
   min-height: 90px;
@@ -21,18 +21,18 @@
         margin: 12px
       }
 
-      li {
+      li, a {
         display: flex;
         flex: auto;
         align-items: center;
         justify-content: center;
-        font-size: 16px;
-        background-color: #f9f9f9;
+        background-color: #fff;
         width: 120px;
         max-height: 45px;
         padding: 13px 30px;
         border-radius: 10px;
         margin: 12px;
+        font-size: 16px;
         font-weight: bold;
         cursor: pointer;
         transition: background-color 0.1s ease-in-out;
@@ -87,11 +87,11 @@
         }
 
         &:hover {
-          background-color: darken(#f9f9f9, 5%);
+          background-color: darken(#f9f9f9, 3%);
         }
 
         &:active {
-          background-color: darken(#f9f9f9, 7%);
+          background-color: darken(#f9f9f9, 5%);
         }
       }
     }

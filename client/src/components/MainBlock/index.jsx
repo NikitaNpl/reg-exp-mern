@@ -19,6 +19,6 @@ const Home = React.memo(function Home({ items, isLoaded }) {
       ) : Array(8).fill(0).map((_, index) => <CartLoadingBlock key={index} />)}
     </div>
   )
-})
+});
 
 export default Home;

@@ -1,0 +1,75 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MainBlock component должен отобразить надпись "Не удалось найти", если isLoaded=true и items = [] 1`] = `
+<div
+  className="main container"
+>
+  <h2>
+    Не удалось найти 😕
+  </h2>
+</div>
+`;
+
+exports[`MainBlock component должен отрендерить компонент Cart, если isLoaded=true и items = [...] 1`] = `
+<div
+  className="main container"
+>
+  <Cart
+    items={
+      Object {
+        "_id": "5fddf22ec0a636d64dc16927",
+        "additionalInfo": Object {
+          "_id": "5fde3f2fc0a636d64dc1692e",
+          "colorId": "5fe8c0eed14a9e7eab184d25",
+          "name": "Строки",
+        },
+        "color": Object {
+          "_id": "5fe8c0eed14a9e7eab184d25",
+          "hex": "#eb5757",
+          "name": "red",
+        },
+        "description": "Никнейм состоящий от 3 до 16 символов. Допускаются: буквы (a-zA-z), цифры, дефис и нижнее подчеркивание",
+        "pattern": "/^[a-zA-Z0-9_-]{3,16}$/",
+        "placeholder": "Nickname_",
+        "rating": Object {
+          "likes": 20,
+          "views": 0,
+        },
+        "title": "Никнейм",
+      }
+    }
+    key="5fddf22ec0a636d64dc16927"
+  />
+</div>
+`;
+
+exports[`MainBlock component должен отрендерить компонент CartLoadingBlock, если isLoaded=false и items = [] 1`] = `
+<div
+  className="main container"
+>
+  <LoadingBlock
+    key="0"
+  />
+  <LoadingBlock
+    key="1"
+  />
+  <LoadingBlock
+    key="2"
+  />
+  <LoadingBlock
+    key="3"
+  />
+  <LoadingBlock
+    key="4"
+  />
+  <LoadingBlock
+    key="5"
+  />
+  <LoadingBlock
+    key="6"
+  />
+  <LoadingBlock
+    key="7"
+  />
+</div>
+`;
