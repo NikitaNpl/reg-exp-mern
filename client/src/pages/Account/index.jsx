@@ -5,7 +5,6 @@ import { Link, Route, Switch, Redirect, } from 'react-router-dom';
 import Creation from "./Create/index";
 
 function Account() {
-  console.log('account')
   return (
     <div className="container">
       <div className="categories">

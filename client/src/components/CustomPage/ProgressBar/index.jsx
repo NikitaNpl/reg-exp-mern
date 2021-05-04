@@ -8,8 +8,13 @@ function ProgressBar({ topics, selectedTopic, onClickTopic }) {
         {topics.length ? (topics.map((topic) => (
           <li
             key={`${topic.id}`}
-            className={selectedTopic.id > topic.id ? "passed" : (selectedTopic.id === topic.id ? "active" : null)}
-            onClick={onClickTopic.bind(this, topic)}
+            className={
+              selectedTopic.id > topic.id ? "passed" :
+                (selectedTopic.id === topic.id ? (
+                  selectedTopic.filled ? "passed" : "active"
+                ) : null)
+            }
+            onClick={selectedTopic.filled || topic.filled ? onClickTopic.bind(this, topic) : null}
           >
             {topic.title}
           </li>

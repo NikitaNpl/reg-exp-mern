@@ -195,11 +195,16 @@
       .form-input {
         margin-bottom: 15px;
 
-        input[type=radio] {
-          cursor: pointer;
+        .radio-input {
+          display: inline-block;
+
+          input[type='radio'] {
+            cursor: pointer;
+            margin: 0 10px 0 40px;
+          }
         }
 
-        input[type=text] {
+        input[type='text'] {
           width: 100%;
           border: none;
           outline: none;
@@ -215,11 +220,21 @@
         display: flex;
         justify-content: flex-end;
 
+        span {
+          &.not-allowed {
+            cursor: not-allowed;
+          }
+        }
+
         button {
           height: 35px;
           padding: 0 10px;
           border-radius: $mainBorder-radius;
           font-size: 16px;
+
+          &.none-pointerEvents {
+            pointer-events: none;
+          }
 
           @media screen and (max-width: 320px) {
             font-size: 12px;
@@ -232,6 +247,12 @@
       display: flex;
       justify-content: flex-end;
 
+      span {
+        &.not-allowed {
+          cursor: not-allowed;
+        }
+      }
+
       button {
         width: 40px;
         height: 40px;
@@ -239,6 +260,10 @@
         font-size: 24px;
         box-shadow: 0px 0px 5px rgba(0, 0, 0, 0.1);
         user-select: none;
+
+        &.none-pointerEvents {
+          pointer-events: none;
+        }
       }
     }
 

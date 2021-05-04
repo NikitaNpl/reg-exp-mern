@@ -2,26 +2,31 @@
   {
     "id": 1,
     "title": "Тема",
-    "description": "Тематика регулярного выражения"
+    "description": "Тематика регулярного выражения",
+    "filled": false
   },
   {
     "id": 2,
     "title": "Заголовок",
-    "description": "Заголовок регулярного выражения"
+    "description": "Заголовок регулярного выражения",
+    "filled": false
   },
   {
     "id": 3,
     "title": "Паттерн",
-    "description": "Паттерн — регулярное выражение"
+    "description": "Паттерн — регулярное выражение",
+    "filled": false
   },
   {
     "id": 4,
     "title": "Placeholder",
-    "description": "Placeholder — подсказка для пользователей"
+    "description": "Placeholder — подсказка для пользователей",
+    "filled": false
   },
   {
     "id": 5,
     "title": "Описание",
-    "description": "Подробное изложение, что делает регулряное выражение"
+    "description": "Подробное изложение, что делает регулряное выражение",
+    "filled": false
   }
 ]
