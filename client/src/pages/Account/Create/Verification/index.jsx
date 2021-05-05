@@ -1,10 +1,25 @@
-import React from 'react'
+import React from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+
+import CustomPage from "../../../../components/CustomPage";
 
 function Verification() {
+  const dispatch = useDispatch();
+  const { tests, selectedTest, topics } = useSelector(({ create }) => create);
+  const [pattern, setPattern] = React.useState("");
+
+  React.useEffect(() => {
+    setPattern(topics[2]?.info);
+  }, [topics]);
+
   return (
-    <div>
-      Verification
-    </div>
+    <CustomPage
+      pageNumber={2}
+      pageHeader={"Проверка регулярного выражения"}
+      items={tests}
+      pattern={pattern}
+      selectedItem={selectedTest}
+    />
   )
 }
 

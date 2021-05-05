@@ -1,22 +1,22 @@
 import React from 'react';
 
-function ProgressBar({ topics, selectedTopic, onClickTopic }) {
+function ProgressBar({ items, selectedItem, onClickItem }) {
 
   return (
     <div className="page__progerss-bar">
       <ul className="progress-bar">
-        {topics.length ? (topics.map((topic) => (
+        {items.length ? (items.map((item) => (
           <li
-            key={`${topic.id}`}
+            key={`${item.id}`}
             className={
-              selectedTopic.id > topic.id ? "passed" :
-                (selectedTopic.id === topic.id ? (
-                  selectedTopic.filled ? "passed" : "active"
+              selectedItem.id > item.id ? "passed" :
+                (selectedItem.id === item.id ? (
+                  selectedItem.filled ? "passed" : "active"
                 ) : null)
             }
-            onClick={selectedTopic.filled || topic.filled ? onClickTopic.bind(this, topic) : null}
+            onClick={selectedItem.filled || item.filled ? onClickItem.bind(this, item) : null}
           >
-            {topic.title}
+            {item.title}
           </li>
         ))) : null}
         {/* <li className="passed">Тема</li>

@@ -3,18 +3,18 @@ import React from 'react'
 import ProgressBar from './ProgressBar';
 import CustomInput from './CustomInput';
 
-function CustomPage({ pageNumber, pageHeader, topics, selectedTopic, onClickTopic }) {
+function CustomPage({ pageNumber, pageHeader, items, selectedItem, onClickItem, pattern }) {
 
   return (
     <React.Fragment>
       <div className="page__number">{pageNumber}</div>
       <div className="page__header">{pageHeader}</div>
-      <ProgressBar 
-        topics={topics} 
-        selectedTopic={selectedTopic} 
-        onClickTopic={onClickTopic} 
+      <ProgressBar
+        items={items}
+        selectedItem={selectedItem}
+        onClickItem={onClickItem}
       />
-      <CustomInput topic={selectedTopic} />
+      <CustomInput item={selectedItem} pattern={pattern} />
     </React.Fragment>
   )
 }

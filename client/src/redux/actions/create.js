@@ -30,3 +30,8 @@ export const setInfoTopic = (info, isFilled) => ({
   info,
   isFilled
 })
+
+export const setTests = (tests) => ({
+  type: 'SET_TESTS',
+  tests
+})

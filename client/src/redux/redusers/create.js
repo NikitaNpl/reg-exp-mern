@@ -7,6 +7,13 @@ const initialState = {
     description: "Тематика регулярного выражения",
     info: null,
     filled: false
+  },
+  tests: [],
+  selectedTest: {
+    id: 1,
+    title: "Тест №1",
+    description: "Данный тест позволяет проверить корректность написанного регулярного выражения",
+    isPassed: false
   }
 }
 
@@ -72,6 +79,11 @@ const create = (state = initialState, action) => {
         selectedTopic: newSelectedTopic
       }
     }
+    case 'SET_TESTS':
+      return {
+        ...state,
+        tests: action.tests
+      }
     default:
       return state;
   }
