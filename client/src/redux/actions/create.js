@@ -17,6 +17,14 @@ export const setTopic = (topic) => ({
   topic
 })
 
+export const setNextTopic = () => ({
+  type: 'SET_NEXT_TOPIC'
+})
+
+export const setPrevTopic = () => ({
+  type: 'SET_PREV_TOPIC'
+})
+
 export const setInfoTopic = (info, isFilled) => ({
   type: 'SET_INFO_TOPIC',
   info,

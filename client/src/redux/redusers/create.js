@@ -45,23 +45,31 @@ const create = (state = initialState, action) => {
     case 'SET_INFO_TOPIC': {
       return {
         ...state,
-        selectedTopic: {...state.selectedTopic, info: action.info, filled: action.isFilled}
+        selectedTopic: { ...state.selectedTopic, info: action.info, filled: action.isFilled }
       }
     }
     case 'SET_NEXT_TOPIC': {
+      const selectedTopicID = state.selectedTopic.id;
+      const newSelectedTopic = selectedTopicID < 5
+        ? (state.topics.find((topic) => topic.id === selectedTopicID + 1))
+        : (state.selectedTopic);
 
       return {
         ...state,
         topics: saveSelectedTopic(state.topics, state.selectedTopic),
-        selectedTopic: action.topic
+        selectedTopic: newSelectedTopic
       }
     }
     case 'SET_PREV_TOPIC': {
+      const selectedTopicID = state.selectedTopic.id;
+      const newSelectedTopic = selectedTopicID > 1
+        ? (state.topics.find((topic) => topic.id === selectedTopicID - 1))
+        : (state.selectedTopic);
 
       return {
         ...state,
         topics: saveSelectedTopic(state.topics, state.selectedTopic),
-        selectedTopic: action.topic
+        selectedTopic: newSelectedTopic
       }
     }
     default:

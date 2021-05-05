@@ -1,9 +1,7 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
-import {
-  setInfoTopic
-} from "../../../redux/actions/create";
+import { setInfoTopic, setNextTopic, setPrevTopic } from "../../../redux/actions/create";
 
 function CustomInput({ topic }) {
   const dispatch = useDispatch();
@@ -21,6 +19,14 @@ function CustomInput({ topic }) {
     }
 
     dispatch(setInfoTopic(value, true));
+  }
+
+  const handlerPrevTopic = () => {
+    dispatch(setPrevTopic());
+  }
+
+  const handlerNextTopic = () => {
+    dispatch(setNextTopic());
   }
 
   return (
@@ -50,9 +56,15 @@ function CustomInput({ topic }) {
         )}
       </div>
       <div className="form-transition">
-        <button>Назад</button>
+        <button onClick={handlerPrevTopic}>Назад</button>
         <span className={topic.filled ? "" : "not-allowed"}>
-          <button disabled={!topic.filled} className={topic.filled ? "" : "none-pointerEvents"}>Далее</button>
+          <button 
+            disabled={!topic.filled} 
+            className={topic.filled ? "" : "none-pointerEvents"}
+            onClick={handlerNextTopic}
+          >
+            Далее
+          </button>
         </span>
       </div>
     </div>
