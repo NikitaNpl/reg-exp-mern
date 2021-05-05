@@ -3,30 +3,35 @@
     "id": 1,
     "title": "Тема",
     "description": "Тематика регулярного выражения",
+    "info": null,
     "filled": false
   },
   {
     "id": 2,
     "title": "Заголовок",
     "description": "Заголовок регулярного выражения",
+    "info": null,
     "filled": false
   },
   {
     "id": 3,
     "title": "Паттерн",
     "description": "Паттерн — регулярное выражение",
+    "info": null,
     "filled": false
   },
   {
     "id": 4,
     "title": "Placeholder",
     "description": "Placeholder — подсказка для пользователей",
+    "info": null,
     "filled": false
   },
   {
     "id": 5,
     "title": "Описание",
     "description": "Подробное изложение, что делает регулряное выражение",
+    "info": null,
     "filled": false
   }
 ]

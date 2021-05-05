@@ -2,65 +2,26 @@ import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 
 import {
-  setFilledTopic,
-  setCategorie,
-  setCaption,
-  setPattern,
-  setPlaceholder,
-  setDescription
+  setInfoTopic
 } from "../../../redux/actions/create";
 
 function CustomInput({ topic }) {
   const dispatch = useDispatch();
   const textInputRef = React.useRef(null);
-  const { category, caption, pattern, placeholder, description } = useSelector(({ create }) => create.creature);
   const { categories } = useSelector(({ categories }) => categories);
 
-  const dispatchSetFilledTopic = (isFilled) => {
-    dispatch(setFilledTopic(isFilled));
-  }
-
   const handlerRadioInput = (category) => {
-    dispatchSetFilledTopic(true);
-    dispatch(setCategorie(category));
+    dispatch(setInfoTopic(category, true));
   }
 
   const handlerTextInput = () => {
-    dispatchSetFilledTopic(true);
     const value = textInputRef.current.value;
-
     if (!value) {
-      dispatchSetFilledTopic(false);
+      return dispatch(setInfoTopic(null, false));
     }
 
-    switch (topic.id) {
-      case 2:
-        return dispatch(setCaption(value));
-      case 3:
-        return dispatch(setPattern(value));
-      case 4:
-        return dispatch(setPlaceholder(value));
-      case 5:
-        return dispatch(setDescription(value));
-      default:
-        return;
-    }
+    dispatch(setInfoTopic(value, true));
   }
-
-  const outputTextInput = () => {
-    switch (topic.id) {
-      case 2:
-        return caption;
-      case 3:
-        return pattern;
-      case 4:
-        return placeholder;
-      case 5:
-        return description;
-      default:
-        return;
-    }
-  };
 
   return (
     <div className="page__form">
@@ -77,7 +38,7 @@ function CustomInput({ topic }) {
           <div className="radio-input" key={item._id}>
             <input
               type="radio"
-              checked={item._id === category?._id}
+              checked={item._id === topic.info?._id}
               readOnly
               value={item.name}
               onClick={handlerRadioInput.bind(this, item)}
@@ -85,7 +46,7 @@ function CustomInput({ topic }) {
             {item.name}
           </div>
         )) : (
-          <input ref={textInputRef} type="text" value={outputTextInput() || ''} onChange={handlerTextInput} />
+          <input ref={textInputRef} type="text" value={topic.info ? topic.info : ''} onChange={handlerTextInput} />
         )}
       </div>
       <div className="form-transition">

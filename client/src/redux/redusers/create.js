@@ -5,14 +5,8 @@ const initialState = {
     id: 1,
     title: "Тема",
     description: "Тематика регулярного выражения",
+    info: null,
     filled: false
-  },
-  creature: {
-    category: null,
-    caption: null,
-    pattern: null,
-    placeholder: null,
-    description: null,
   }
 }
 
@@ -48,6 +42,12 @@ const create = (state = initialState, action) => {
         topics: saveSelectedTopic(state.topics, state.selectedTopic),
         selectedTopic: action.topic
       }
+    case 'SET_INFO_TOPIC': {
+      return {
+        ...state,
+        selectedTopic: {...state.selectedTopic, info: action.info, filled: action.isFilled}
+      }
+    }
     case 'SET_NEXT_TOPIC': {
 
       return {
@@ -64,51 +64,6 @@ const create = (state = initialState, action) => {
         selectedTopic: action.topic
       }
     }
-    case 'SET_FILLED_TOPIC':
-      return {
-        ...state,
-        selectedTopic: { ...state.selectedTopic, filled: action.isFilled }
-      }
-    case 'SET_CATEGORIE':
-      return {
-        ...state,
-        creature: {
-          ...state.creature,
-          category: action.categorie
-        }
-      }
-    case 'SET_PATTERN':
-      return {
-        ...state,
-        creature: {
-          ...state.pattern,
-          pattern: action.pattern
-        }
-      }
-    case 'SET_CAPTION':
-      return {
-        ...state,
-        creature: {
-          ...state.creature,
-          caption: action.caption
-        }
-      }
-    case 'SET_PLACEHOLDER':
-      return {
-        ...state,
-        creature: {
-          ...state.creature,
-          placeholder: action.placeholder
-        }
-      }
-    case 'SET_DESCRIPTION':
-      return {
-        ...state,
-        creature: {
-          ...state.creature,
-          description: action.description
-        }
-      }
     default:
       return state;
   }
