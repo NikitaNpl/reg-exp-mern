@@ -26,7 +26,7 @@ function Create(props) {
   }, [currentPage])
 
   React.useEffect(() => {
-    const isFilled = topics.every((topic) => topic.filled === true );
+    const isFilled = topics.every((topic) => topic.isApproved === true );
     setIsAllFilled(isFilled);
   }, [topics]);
 

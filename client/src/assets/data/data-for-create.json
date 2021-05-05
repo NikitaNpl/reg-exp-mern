@@ -2,36 +2,41 @@
   {
     "id": 1,
     "title": "Тема",
+    "tag": "categoriesId",
     "description": "Тематика регулярного выражения",
     "info": null,
-    "filled": false
+    "isApproved": false
   },
   {
     "id": 2,
     "title": "Заголовок",
+    "tag": "title",
     "description": "Заголовок регулярного выражения",
     "info": null,
-    "filled": false
+    "isApproved": false
   },
   {
     "id": 3,
     "title": "Паттерн",
+    "tag": "pattern",
     "description": "Паттерн — регулярное выражение",
     "info": null,
-    "filled": false
+    "isApproved": false
   },
   {
     "id": 4,
     "title": "Placeholder",
+    "tag": "placeholder",
     "description": "Placeholder — подсказка для пользователей",
     "info": null,
-    "filled": false
+    "isApproved": false
   },
   {
     "id": 5,
     "title": "Описание",
+    "tag": "description",
     "description": "Подробное изложение, что делает регулряное выражение",
     "info": null,
-    "filled": false
+    "isApproved": false
   }
 ]

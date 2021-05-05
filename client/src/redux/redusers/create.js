@@ -4,16 +4,17 @@ const initialState = {
   selectedTopic: {
     id: 1,
     title: "Тема",
+    tag: "categoriesId",
     description: "Тематика регулярного выражения",
     info: null,
-    filled: false
+    isApproved: false
   },
   tests: [],
   selectedTest: {
     id: 1,
     title: "Тест №1",
     description: "Данный тест позволяет проверить корректность написанного регулярного выражения",
-    isPassed: false
+    isApproved: false
   }
 }
 
@@ -23,6 +24,15 @@ const saveSelectedTopic = (topics, selectedTopic) => {
       return { ...selectedTopic };
     }
     return topic;
+  })
+}
+
+const saveSelectedTest = (tests, selectedTest) => {
+  return tests.map((test) => {
+    if (test.id === selectedTest.id) {
+      return { ...selectedTest };
+    }
+    return test;
   })
 }
 
@@ -43,16 +53,10 @@ const create = (state = initialState, action) => {
         ...state,
         topics: action.topics
       }
-    case 'SET_TOPIC':
-      return {
-        ...state,
-        topics: saveSelectedTopic(state.topics, state.selectedTopic),
-        selectedTopic: action.topic
-      }
     case 'SET_INFO_TOPIC': {
       return {
         ...state,
-        selectedTopic: { ...state.selectedTopic, info: action.info, filled: action.isFilled }
+        selectedTopic: { ...state.selectedTopic, info: action.info, isApproved: action.isApproved }
       }
     }
     case 'SET_NEXT_TOPIC': {
@@ -84,6 +88,35 @@ const create = (state = initialState, action) => {
         ...state,
         tests: action.tests
       }
+    case 'SET_IS_PASSED_TEST':
+      return {
+        ...state,
+        selectedTest: { ...state.selectedTest, isApproved: action.isApproved }
+      }
+    case 'SET_NEXT_TEST': {
+      const selectedTestID = state.selectedTest.id;
+      const newSelectedTest = selectedTestID < 3
+        ? (state.tests.find((test) => test.id === selectedTestID + 1))
+        : (state.selectedTest);
+
+      return {
+        ...state,
+        tests: saveSelectedTest(state.tests, state.selectedTest),
+        selectedTest: newSelectedTest
+      }
+    }
+    case 'SET_PREV_TEST': {
+      const selectedTestID = state.selectedTest.id;
+      const newSelectedTest = selectedTestID > 1
+        ? (state.tests.find((test) => test.id === selectedTestID - 1))
+        : (state.selectedTest);
+
+      return {
+        ...state,
+        tests: saveSelectedTest(state.tests, state.selectedTest),
+        selectedTest: newSelectedTest
+      }
+    }
     default:
       return state;
   }

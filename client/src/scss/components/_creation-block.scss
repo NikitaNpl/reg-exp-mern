@@ -112,6 +112,12 @@
       }
     }
 
+    .cart {
+      max-width: 400px;
+      margin: 0 auto;
+      margin-bottom: 100px;
+    }
+
     &__form {
       max-width: 500px;
       margin: 0 auto;
@@ -280,8 +286,11 @@
       }
     }
 
-    button {
+    span {
       margin-left: 10px;
+    }
+
+    button {
       border: none;
       outline: none;
       user-select: none;

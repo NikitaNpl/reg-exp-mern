@@ -5,16 +5,16 @@ function ProgressBar({ items, selectedItem, onClickItem }) {
   return (
     <div className="page__progerss-bar">
       <ul className="progress-bar">
-        {items.length ? (items.map((item) => (
+        {items?.length ? (items.map((item) => (
           <li
             key={`${item.id}`}
             className={
               selectedItem.id > item.id ? "passed" :
                 (selectedItem.id === item.id ? (
-                  selectedItem.filled ? "passed" : "active"
+                  selectedItem.isApproved ? "passed" : "active"
                 ) : null)
             }
-            onClick={selectedItem.filled || item.filled ? onClickItem.bind(this, item) : null}
+            // onClick={selectedItem.isApproved || item.isApproved ? onClickItem?.bind(this, item) : null}
           >
             {item.title}
           </li>

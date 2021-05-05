@@ -7,7 +7,7 @@ import unLike from '../../assets/svg/heart_outline.svg';
 import like from '../../assets/svg/heart_fill.svg';
 
 
-function Cart({ items }) {
+function Cart({ items, isDemo }) {
   const dispatch = useDispatch();
   const { itemsLikes } = useSelector(({ regExp }) => regExp);
   const [isCopyiedPattern, setCopyiedPattern] = React.useState(false);
@@ -15,7 +15,7 @@ function Cart({ items }) {
   const [inputValue, setInputValue] = React.useState("");
   const copyiedPatternRef = React.useRef();
   const inputRef = React.useRef();
-  const isLiked = itemsLikes.includes(items._id);
+  const isLiked = itemsLikes.includes(items?._id);
 
   const onClickLike = React.useCallback((itemId) => {
     dispatch(fetchLike(itemId));
@@ -33,7 +33,9 @@ function Cart({ items }) {
     document.execCommand("copy");
     document.body.removeChild(area);
     setCopyiedPattern(true);
-    dispatch(fetchViews(itemId))
+    if (!isDemo) {
+      dispatch(fetchViews(itemId));
+    }
   }
 
   function handlerMouseOver() {
@@ -46,7 +48,12 @@ function Cart({ items }) {
 
   function handelreOnKeyUp(pattern) {
     let regParts = pattern.match(/^\/(.*?)\/([gim]*)$/);
-    let regExp = new RegExp(regParts[1], regParts[2]);
+    let regExp = null;
+    if (regParts) {
+      regExp = new RegExp(regParts[1], regParts[2]);
+    } else {
+      regExp = new RegExp(pattern);
+    }
     if (!inputValue) {
       return;
     }
@@ -59,9 +66,9 @@ function Cart({ items }) {
 
   return (
     <div className="cart">
-      <div className={`cart__header border-${items.color.name}`}>
-        <span className="cart__header-title">{items.title}</span>
-        <div className="cart__header-info" data-name={items.description ? items.description : items.title}>
+      <div className={`cart__header border-${items?.color?.name}`}>
+        <span className="cart__header-title">{items?.title}</span>
+        <div className="cart__header-info" data-name={items?.description ? items?.description : items?.title}>
           <svg width="25" height="24" viewBox="0 0 25 24" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.7156 22C7.19404 21.9945 2.72191 17.5149 2.72559 11.9933C2.72927 6.47179 7.20737 1.99816 12.7289 2C18.2505 2.00184 22.7256 6.47845 22.7256 12C22.7223 17.5254 18.241 22.0022 12.7156 22ZM4.72559 12.172C4.7729 16.5732 8.36669 20.1095 12.7681 20.086C17.1696 20.0622 20.7251 16.4875 20.7251 12.086C20.7251 7.6845 17.1696 4.10977 12.7681 4.08599C8.36669 4.06245 4.7729 7.59875 4.72559 12V12.172ZM13.7256 17H11.7256V15H13.7256V17ZM13.7256 13H11.7256V7H13.7256V13Z" fill="#828282" />
           </svg>
@@ -70,12 +77,12 @@ function Cart({ items }) {
       <div className="cart__main">
         <div className="textarea-info" data-name={isCopyiedPattern ? 'Скопировано' : 'Скопировать'}>
           <textarea
-            onClick={handelreCopyPattern.bind(this, copyiedPatternRef, items._id)}
+            onClick={handelreCopyPattern.bind(this, copyiedPatternRef, items?._id)}
             onMouseOver={handlerMouseOver}
             ref={copyiedPatternRef}
             name="text"
             readOnly
-            defaultValue={items.pattern}
+            defaultValue={items?.pattern}
           />
         </div>
         <div className="input-area">
@@ -99,11 +106,11 @@ function Cart({ items }) {
             }
           </div>
           <input
-            onKeyUp={handelreOnKeyUp.bind(this, items.pattern)}
+            onKeyUp={handelreOnKeyUp.bind(this, items?.pattern)}
             onChange={handelreOnChangeInput}
             ref={inputRef}
             type="text"
-            placeholder={items.placeholder}
+            placeholder={items?.placeholder}
           />
         </div>
       </div>
@@ -115,18 +122,18 @@ function Cart({ items }) {
           <span>naiple</span>
         </div>
         <div
-          onClick={isLiked ? onClickUnLike.bind(this, items._id) : onClickLike.bind(this, items._id)}
+          onClick={isDemo ? null : isLiked ? onClickUnLike.bind(this, items?._id) : onClickLike.bind(this, items?._id)}
           className="cart__footer-like"
-          title={`${items.rating.likes} likes`}
+          title={`${isDemo ? "0" : items?.rating.likes} likes`}
         >
           <img src={isLiked ? like : unLike}></img>
-          <span>{items.rating.likes}</span>
+          <span>{isDemo ? "0" : items?.rating.likes}</span>
         </div>
-        <div className="cart__footer-views" title={`${items.rating.views} wiews`}>
+        <div className="cart__footer-views" title={`${ isDemo ? "0" : items?.rating.views} wiews`}>
           <svg width="25" height="25" viewBox="0 0 25 25" fill="none" xmlns="http://www.w3.org/2000/svg">
             <path d="M12.1414 19.5865C10.5013 19.6069 8.87809 19.253 7.39539 18.5515C6.24608 17.9907 5.21404 17.2163 4.35439 16.2695C3.44382 15.2906 2.72686 14.1482 2.24139 12.9025L2.14139 12.5865L2.24639 12.2705C2.7322 11.0259 3.44762 9.88378 4.35539 8.90351C5.21473 7.95682 6.24643 7.18237 7.39539 6.62151C8.8781 5.9201 10.5013 5.56612 12.1414 5.58651C13.7815 5.56616 15.4047 5.92013 16.8874 6.62151C18.0367 7.18225 19.0688 7.9567 19.9284 8.90351C20.8407 9.88107 21.5579 11.0239 22.0414 12.2705L22.1414 12.5865L22.0364 12.9025C20.4676 16.9863 16.5156 19.6559 12.1414 19.5865ZM12.1414 7.58651C8.73726 7.47984 5.61281 9.46161 4.25839 12.5865C5.61259 15.7116 8.73718 17.6935 12.1414 17.5865C15.5454 17.6929 18.6697 15.7112 20.0244 12.5865C18.6717 9.46009 15.5461 7.47759 12.1414 7.58651ZM12.1414 15.5865C10.6987 15.5961 9.45076 14.5839 9.16235 13.1703C8.87395 11.7567 9.62566 10.3365 10.9568 9.78017C12.2879 9.22381 13.8266 9.68665 14.6299 10.885C15.4332 12.0834 15.2768 13.6826 14.2564 14.7025C13.6977 15.2678 12.9361 15.5861 12.1414 15.5865Z" fill="#828282" />
           </svg>
-          <span>{items.rating.views}</span>
+          <span>{ isDemo ? "0" : items?.rating.views}</span>
         </div>
       </div>
     </div >

@@ -1,7 +1,6 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { setTopic } from "../../../../redux/actions/create";
 import { fetchCategories } from "../../../../redux/actions/categories";
 
 import CustomPage from "../../../../components/CustomPage";
@@ -14,17 +13,12 @@ function Creation() {
     dispatch(fetchCategories());
   }, [dispatch]);
 
-  const onClickTopic = (topic) => {
-    dispatch(setTopic(topic))
-  }
-
   return (
     <CustomPage
       pageNumber={1}
       pageHeader={"Создание карточки регулярного выражения"}
       items={topics}
       selectedItem={selectedTopic}
-      onClickItem={onClickTopic}
     />
   )
 }

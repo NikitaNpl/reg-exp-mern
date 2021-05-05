@@ -2,8 +2,9 @@ import React from 'react'
 
 import ProgressBar from './ProgressBar';
 import CustomInput from './CustomInput';
+import Cart from '../Cart';
 
-function CustomPage({ pageNumber, pageHeader, items, selectedItem, onClickItem, pattern }) {
+function CustomPage({ pageNumber, pageHeader, items, selectedItem, pattern, cartItems, isDemo }) {
 
   return (
     <React.Fragment>
@@ -12,9 +13,9 @@ function CustomPage({ pageNumber, pageHeader, items, selectedItem, onClickItem, 
       <ProgressBar
         items={items}
         selectedItem={selectedItem}
-        onClickItem={onClickItem}
       />
       <CustomInput item={selectedItem} pattern={pattern} />
+      {isDemo ? <Cart items={cartItems} isDemo /> : null}
     </React.Fragment>
   )
 }
