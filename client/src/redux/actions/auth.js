@@ -5,7 +5,7 @@ export const fetchGitHubAPI = (code) => (dispatch) => {
     .get(`/api/users/oauth-callback?code=${code}`)
     .then(({ data }) => {
       dispatch(setAccount(...data));
-    });
+    }).catch(err => console.log(err));
 }
 
 export const setAccount = (payload) => ({

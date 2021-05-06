@@ -1,10 +1,9 @@
 import React from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import { useSelector } from 'react-redux';
 
 import CustomPage from "../../../../components/CustomPage";
 
 function Verification() {
-  const dispatch = useDispatch();
   const { tests, selectedTest, topics } = useSelector(({ create }) => create);
   const [pattern, setPattern] = React.useState("");
 

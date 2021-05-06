@@ -1,10 +1,22 @@
 import React from 'react';
+import { useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
 import { Link, Route, Switch, } from 'react-router-dom';
 
 import Creation from "./Create/index";
 
 function Account() {
+  const history = useHistory();
+  let { account } = useSelector(({ auth }) => auth)
+
+  React.useEffect(() => {
+    if(!Object.keys(account).length) {
+      history.push("./");
+    }
+  }, [history, account]);
+
+
   return (
     <div className="container">
       <div className="categories">

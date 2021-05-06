@@ -24,7 +24,7 @@ function Create(props) {
 
   React.useEffect(() => {
     props.history.push(`/account/create/${currentPage}`);
-  }, [currentPage])
+  }, [props.history, currentPage])
 
   React.useEffect(() => {
     const isFilled = topics.every((topic) => topic.isApproved === true);

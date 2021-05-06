@@ -17,11 +17,10 @@ function CustomInput({ item, pattern }) {
 
   const createRegExp = (pattern) => {
     let regParts = pattern.match(/^\/(.*?)\/([gim]*)$/);
-    let regExp = null;
     if (regParts) {
       return new RegExp(regParts[1], regParts[2]);
     } else {
-      return regExp = new RegExp(pattern);
+      return new RegExp(pattern);
     }
   }
 

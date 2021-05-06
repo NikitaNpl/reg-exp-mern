@@ -56,7 +56,7 @@ router.get('/oauth-callback/:code?', (req, res) => {
         })
         .catch(err => res.status(502).json({ err: `${err}` }));
       // res.redirect(`/?name=${data.login}`);
-    });
+    }).catch(err => console.log(err));
 });
 
 module.exports = router;

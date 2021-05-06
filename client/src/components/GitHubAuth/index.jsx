@@ -13,7 +13,7 @@ const GitHubAuth = () => {
     if(Object.keys(account).length) {
       history.push("./");
     }
-  }, [account]);
+  }, [history, account]);
 
   (function () {
     const code = new URLSearchParams(window.location.search).get('code');

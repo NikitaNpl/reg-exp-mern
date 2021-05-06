@@ -126,7 +126,7 @@ function Cart({ items, isDemo }) {
           className="cart__footer-like"
           title={`${isDemo ? "0" : items?.rating.likes} likes`}
         >
-          <img src={isLiked ? like : unLike}></img>
+          <img src={isLiked ? like : unLike} alt=""></img>
           <span>{isDemo ? "0" : items?.rating.likes}</span>
         </div>
         <div className="cart__footer-views" title={`${ isDemo ? "0" : items?.rating.views} wiews`}>
