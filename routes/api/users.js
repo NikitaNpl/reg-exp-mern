@@ -34,6 +34,7 @@ router.get('/oauth-callback/:code?', (req, res) => {
   })
     .then((accessToken) => {
       return axios({
+        method: 'get',
         url: 'https://api.github.com/user',
         headers: {
           Authorization: 'token ' + accessToken
@@ -56,7 +57,7 @@ router.get('/oauth-callback/:code?', (req, res) => {
         })
         .catch(err => res.status(502).json({ err: `${err}` }));
       // res.redirect(`/?name=${data.login}`);
-    }).catch(err => console.log(err));
+    })
 });
 
 module.exports = router;

@@ -7,22 +7,24 @@ import { fetchGitHubAPI } from "../../redux/actions/auth";
 const GitHubAuth = () => {
   const history = useHistory();
   const dispatch = useDispatch();
-  let { account } = useSelector(({ auth }) => auth)
+  let { account } = useSelector(({ auth }) => auth);
 
-  React.useEffect(() => {
-    if(Object.keys(account).length) {
-      history.push("./");
-    }
-  }, [history, account]);
-
-  (function () {
+  const fetchAccount = React.useCallback(() => {
     const code = new URLSearchParams(window.location.search).get('code');
     if (code) {
-      dispatch(fetchGitHubAPI(code))
+      dispatch(fetchGitHubAPI(code));
     } else {
       window.location.replace("./");
     }
-  })()
+  }, [dispatch]);
+
+  React.useEffect(() => {
+    if (Object.keys(account).length) {
+      return history.push("./");
+    }
+    fetchAccount();
+  }, [history, account, fetchAccount]);
+
   return (
     <div>
       GitHubAuth
