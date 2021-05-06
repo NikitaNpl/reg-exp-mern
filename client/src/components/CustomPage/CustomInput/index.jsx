@@ -15,6 +15,16 @@ function CustomInput({ item, pattern }) {
   const textInputRef = React.useRef(null);
   const { categories } = useSelector(({ categories }) => categories);
 
+  const createRegExp = (pattern) => {
+    let regParts = pattern.match(/^\/(.*?)\/([gim]*)$/);
+    let regExp = null;
+    if (regParts) {
+      return new RegExp(regParts[1], regParts[2]);
+    } else {
+      return regExp = new RegExp(pattern);
+    }
+  }
+
   const handlerRadioInput = (category) => {
     dispatch(setInfoTopic(category, true));
   }
@@ -27,6 +37,21 @@ function CustomInput({ item, pattern }) {
     dispatch(setInfoTopic(value, true));
   }
 
+  const handelreCheckedText = (pattern) => {
+    const value = textInputRef.current.value;
+    if (!value) {
+      return dispatch(setIsApprovedTest(false));
+    }
+
+    const regExp = createRegExp(pattern);
+
+    if (regExp.test(value)) {
+      dispatch(setIsApprovedTest(true));
+    } else {
+      dispatch(setIsApprovedTest(false));
+    }
+  }
+
   const handlerPrevTopic = () => {
     dispatch(setPrevTopic());
   }
@@ -35,37 +60,12 @@ function CustomInput({ item, pattern }) {
     dispatch(setNextTopic());
   }
 
-  const clearTextInput = () => {
-    textInputRef.current.value = "";
-  }
-
   const handlerPrevTest = () => {
     dispatch(setPrevTest());
-    clearTextInput();
   }
 
   const handlerNextTest = () => {
     dispatch(setNextTest());
-    clearTextInput();
-  }
-
-  function handelreCheckedText(pattern) {
-    let regParts = pattern.match(/^\/(.*?)\/([gim]*)$/);
-    let regExp = null;
-    if (regParts) {
-      regExp = new RegExp(regParts[1], regParts[2]);
-    } else {
-      regExp = new RegExp(pattern);
-    }
-    const inputValue = textInputRef.current.value;
-    if (!inputValue) {
-      return;
-    }
-    if (!regExp.test(inputValue)) {
-      dispatch(setIsApprovedTest(false));
-    } else {
-      dispatch(setIsApprovedTest(true));
-    }
   }
 
   return (
@@ -84,7 +84,11 @@ function CustomInput({ item, pattern }) {
             {pattern ? (
               <>
                 <textarea defaultValue={pattern} readOnly />
-                <input ref={textInputRef} type="text" onChange={handelreCheckedText.bind(this, pattern)} />
+                <input
+                  ref={textInputRef}
+                  type="text"
+                  onChange={handelreCheckedText.bind(this, pattern)}
+                />
               </>
             )
               :
@@ -101,11 +105,15 @@ function CustomInput({ item, pattern }) {
                     {category.name}
                   </div>
                 )) : (
-                  <input ref={textInputRef} type="text" value={item.info ? item.info : ''} onChange={handlerTextInput} />
+                  <input
+                    ref={textInputRef}
+                    type="text"
+                    value={item.info ? item.info : ""}
+                    onChange={handlerTextInput}
+                  />
                 )
               )
             }
-
           </div>
           <div className="form-transition">
             <span className={item.id === 1 ? "not-allowed" : ""}>
@@ -117,7 +125,7 @@ function CustomInput({ item, pattern }) {
                 Назад
           </button>
             </span>
-            <span className={item.filled ? "" : "not-allowed"}>
+            <span className={item.isApproved ? "" : "not-allowed"}>
               <button
                 disabled={!item.isApproved}
                 className={item.isApproved ? "" : "none-pointerEvents"}

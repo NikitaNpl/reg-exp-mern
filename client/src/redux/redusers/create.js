@@ -1,6 +1,6 @@
 const initialState = {
-  topics: [],
   currentPage: 1,
+  topics: [],
   selectedTopic: {
     id: 1,
     title: "Тема",
@@ -14,6 +14,7 @@ const initialState = {
     id: 1,
     title: "Тест №1",
     description: "Данный тест позволяет проверить корректность написанного регулярного выражения",
+    example: null,
     isApproved: false
   }
 }
@@ -54,9 +55,12 @@ const create = (state = initialState, action) => {
         topics: action.topics
       }
     case 'SET_INFO_TOPIC': {
+      const newSelectedTopic = { ...state.selectedTopic, info: action.info, isApproved: action.isApproved };
+
       return {
         ...state,
-        selectedTopic: { ...state.selectedTopic, info: action.info, isApproved: action.isApproved }
+        topics: saveSelectedTopic(state.topics, newSelectedTopic),
+        selectedTopic: newSelectedTopic
       }
     }
     case 'SET_NEXT_TOPIC': {
@@ -65,8 +69,11 @@ const create = (state = initialState, action) => {
         ? (state.topics.find((topic) => topic.id === selectedTopicID + 1))
         : (state.selectedTopic);
 
+      const newCurrentPage = selectedTopicID === 5 ? 2 : state.currentPage;
+
       return {
         ...state,
+        currentPage: newCurrentPage,
         topics: saveSelectedTopic(state.topics, state.selectedTopic),
         selectedTopic: newSelectedTopic
       }
@@ -88,19 +95,25 @@ const create = (state = initialState, action) => {
         ...state,
         tests: action.tests
       }
-    case 'SET_IS_PASSED_TEST':
+    case 'SET_IS_APPROVED_TEST': {
+      const newSelectedTest = { ...state.selectedTest, isApproved: action.isApproved };
       return {
         ...state,
-        selectedTest: { ...state.selectedTest, isApproved: action.isApproved }
+        tests: saveSelectedTest(state.tests, newSelectedTest),
+        selectedTest: newSelectedTest
       }
+    }
     case 'SET_NEXT_TEST': {
       const selectedTestID = state.selectedTest.id;
       const newSelectedTest = selectedTestID < 3
         ? (state.tests.find((test) => test.id === selectedTestID + 1))
         : (state.selectedTest);
 
+      const newCurrentPage = selectedTestID === 3 ? 3 : state.currentPage;
+
       return {
         ...state,
+        currentPage: newCurrentPage,
         tests: saveSelectedTest(state.tests, state.selectedTest),
         selectedTest: newSelectedTest
       }

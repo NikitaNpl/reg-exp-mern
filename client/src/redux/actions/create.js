@@ -32,7 +32,7 @@ export const setTests = (tests) => ({
 })
 
 export const setIsApprovedTest = (isApproved) => ({
-  type: 'SET_IS_PASSED_TEST',
+  type: 'SET_IS_APPROVED_TEST',
   isApproved
 })
 
