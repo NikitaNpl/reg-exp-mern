@@ -13,8 +13,9 @@ import JSONdataVerification from "../../../assets/data/data-for-verification.jso
 
 function Create(props) {
   const dispatch = useDispatch();
-  const [isAllFilled, setIsAllFilled] = React.useState(false);
-  let { currentPage, topics } = useSelector(({ create }) => create)
+  const [isAllFilledTopics, setIsAllFilledTopics] = React.useState(false);
+  const [isAllFilledTests, setIsAllFilledTests] = React.useState(true);
+  let { currentPage, topics, tests } = useSelector(({ create }) => create)
 
   React.useEffect(() => {
     dispatch(setTopics(JSONdataCreate));
@@ -26,9 +27,19 @@ function Create(props) {
   }, [currentPage])
 
   React.useEffect(() => {
-    const isFilled = topics.every((topic) => topic.isApproved === true );
-    setIsAllFilled(isFilled);
+    const isFilled = topics.every((topic) => topic.isApproved === true);
+    setIsAllFilledTopics(isFilled);
   }, [topics]);
+
+  React.useEffect(() => {
+    if (currentPage === 2) {
+      const isFilled = tests.every((test) => test.isApproved === true);
+      setIsAllFilledTests(isFilled);
+    }
+    if (currentPage === 1) {
+      setIsAllFilledTests(true);
+    }
+  }, [currentPage, tests])
 
   const onClickNextPage = () => {
     dispatch(setNextPage());
@@ -60,8 +71,13 @@ function Create(props) {
           <span className={currentPage === 1 ? "not-allowed" : ""}>
             <button onClick={onClickPrevPage} className={currentPage === 1 ? "none-pointerEvents" : ""}>&lt;</button>
           </span>
-          <span className={currentPage === 3 || isAllFilled === false ? "not-allowed" : ""}>
-            <button onClick={onClickNextPage} className={currentPage === 3 || isAllFilled === false ? "none-pointerEvents" : ""}>&gt;</button>
+          <span className={currentPage === 3 || !isAllFilledTopics || !isAllFilledTests ? "not-allowed" : ""}>
+            <button
+              onClick={onClickNextPage}
+              className={currentPage === 3 || !isAllFilledTopics || !isAllFilledTests ? "none-pointerEvents" : ""}
+            >
+              &gt;
+            </button>
           </span>
         </div>
       </div>

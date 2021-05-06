@@ -15,7 +15,14 @@ function CustomPage({ pageNumber, pageHeader, items, selectedItem, pattern, cart
         selectedItem={selectedItem}
       />
       <CustomInput item={selectedItem} pattern={pattern} />
-      {isDemo ? <Cart items={cartItems} isDemo /> : null}
+      {isDemo ? (
+        <>
+          <Cart items={cartItems} isDemo />
+          <div className="sendNewCart">
+            <button>Подтвердить</button>
+          </div>
+        </>
+      ) : null}
     </React.Fragment>
   )
 }
