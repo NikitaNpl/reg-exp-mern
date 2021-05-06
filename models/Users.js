@@ -3,11 +3,15 @@ const Schema = mongoose.Schema;
 
 // Create Schema
 const UsersSchema = new Schema({
-  accessToken: {
+  githubID: {
     type: String,
     required: true
   },
   name: {
+    type: String,
+    required: true
+  },
+  login: {
     type: String,
     required: true
   },

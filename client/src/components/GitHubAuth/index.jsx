@@ -1,18 +1,27 @@
 import React from 'react'
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 
-import axios from 'axios';
+import { fetchGitHubAPI } from "../../redux/actions/auth";
 
-export default function GitHubAuth() {
+const GitHubAuth = () => {
+  const history = useHistory();
+  const dispatch = useDispatch();
+  let { account } = useSelector(({ auth }) => auth)
+
+  React.useEffect(() => {
+    if(Object.keys(account).length) {
+      history.push("./");
+    }
+  }, [account]);
+
   (function () {
     const code = new URLSearchParams(window.location.search).get('code');
-    const redirect = code ?
-      axios
-        .get(`/oauth-callback?code=${code}`)
-        .then(({ data }) => {
-          console.log(data.redirect)
-          window.location.replace(data.redirect)
-        })
-      : "";
+    if (code) {
+      dispatch(fetchGitHubAPI(code))
+    } else {
+      window.location.replace("./");
+    }
   })()
   return (
     <div>
@@ -20,3 +29,5 @@ export default function GitHubAuth() {
     </div>
   )
 }
+
+export default GitHubAuth;
