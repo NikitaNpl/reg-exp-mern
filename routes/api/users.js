@@ -48,7 +48,7 @@ router.get('/oauth-callback/:code?', (req, res) => {
       ])
         .then((items) => {
           items.length ? res.status(200).json(items) : (
-            Users.insertMany({
+            Users.insertOne({
               githubID: String(data.id),
               name: String(data.name),
               login: String(data.login)
@@ -98,6 +98,22 @@ router.patch('/favorites', (req, res) => {
     {
       $addToSet: {
         favorites: mongoose.Types.ObjectId(req.query.cartId)
+      }
+    }
+  )
+    .then(() => res.status(200).json({ userId: req.query.userId, cartId: req.query.cartId }))
+    .catch(err => res.json({ err: `${err}` }))
+})
+
+// @route   PATCH api/users/favorites:userId:itemId
+// @desc    Update An Item/favorites
+// @access  Public
+router.patch('/createdExpressions', (req, res) => {
+  Users.updateOne(
+    { _id: req.query.userId },
+    {
+      $addToSet: {
+        createdExpressions: mongoose.Types.ObjectId(req.query.cartId)
       }
     }
   )

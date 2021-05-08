@@ -2,6 +2,7 @@ const initialState = {
   account: {},
   viewed: [],
   favorites: [],
+  createdExpression: [],
 }
 
 const auth = (state = initialState, action) => {
@@ -40,6 +41,18 @@ const auth = (state = initialState, action) => {
       return {
         ...state,
         favorites: []
+      }
+    }
+    case 'SET_CREATED_EXP': {
+      return {
+        ...state,
+        createdExpression: [...state.createdExpression, action.payload]
+      }
+    }
+    case 'CLEAR_CREATED_EXP': {
+      return {
+        ...state,
+        createdExpression: []
       }
     }
     default:

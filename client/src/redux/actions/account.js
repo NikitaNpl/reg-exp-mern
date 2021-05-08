@@ -51,6 +51,14 @@ export const fetchOneRegExp = (id, isLiked = false) => (dispatch) => {
     }).catch(err => console.log(err));
 }
 
+// export const fetchUpdateCreatedExpressions = (userId, cartId) => (dispatch) => {
+//   axios
+//     .patch(`/api/users/createdExpressions?userId=${userId}&cartId=${cartId}`)
+//     .then(({ data }) => {
+//       dispatch(fetchUser(data.userId));
+//     }).catch(err => console.log(err));
+// }
+
 export const setViewed = (payload) => ({
   type: 'SET_VIEWED',
   payload
@@ -68,3 +76,20 @@ export const setFavorites = (payload) => ({
 export const clearFavorites = () => ({
   type: 'CLEAR_FAVORITES'
 })
+
+export const setCreatedExpression = (payload) => ({
+  type: 'SET_CREATED_EXP',
+  payload
+})
+
+export const clearCreatedExpression = () => ({
+  type: 'CLEAR_CREATED_EXP'
+})
+
+export const createRegExp = (data) => (dispatch) => {
+  axios
+    .post(`/api/items/`, data)
+    .then(({ data }) => {
+      console.log(data);
+    })
+}

@@ -24,6 +24,13 @@ const ItemSchema = new Schema({
     required: true,
     likes: Number,
     wiews: Number
+  },
+  creator: {
+    type: String,
+  },
+  categoriesId: {
+    type: mongoose.Types.ObjectId,
+    required: true,
   }
 })
 

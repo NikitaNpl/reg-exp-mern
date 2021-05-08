@@ -1,10 +1,19 @@
 import React from 'react'
+import { useDispatch } from 'react-redux';
+
+import { createRegExp } from '../../redux/actions/account';
 
 import ProgressBar from './ProgressBar';
 import CustomInput from './CustomInput';
 import Cart from '../Cart';
 
 function CustomPage({ pageNumber, pageHeader, items, selectedItem, pattern, cartItems, isDemo }) {
+  const dispatch = useDispatch();
+  console.log(cartItems)
+
+  const handlerClickConfirm = () => {
+    dispatch(createRegExp(cartItems));
+  }
 
   return (
     <React.Fragment>
@@ -19,7 +28,7 @@ function CustomPage({ pageNumber, pageHeader, items, selectedItem, pattern, cart
         <>
           <Cart items={cartItems} isDemo />
           <div className="sendNewCart">
-            <button>Подтвердить</button>
+            <button onClick={handlerClickConfirm}>Подтвердить</button>
           </div>
         </>
       ) : null}

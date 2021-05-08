@@ -131,11 +131,17 @@ router.get('/search/:text', (req, res) => {
 // @desc    Create An Items
 // @access  Public
 router.post('/', (req, res) => {
-  const newItem = new Item({
-    name: req.body.name
-  });
-
-  newItem.save().then(item => res.json(item));
+  const {title, description, pattern, placeholder, categoriesId, creator} = req.body;
+  console.log(title, description, pattern, placeholder, categoriesId, creator)
+  Item.create({
+    title: String(title),
+    description: String(description),
+    pattern: String(pattern),
+    placeholder: String(placeholder),
+    rating: Object({likes: 0, views: 0}),
+    creator: String(creator),
+    categoriesId: mongoose.Types.ObjectId(categoriesId)
+  }).then(item => res.status(200).json(item._id))
 });
 
 // @route   PATCH api/items/like:itemId
