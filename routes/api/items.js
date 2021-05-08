@@ -80,10 +80,9 @@ router.get('/:id?', (req, res) => {
   ])
     .then(item => res.status(200).json(item))
     .catch(err => res.status(502).json({ err: `${err}` }))
-
 })
 
-// @route   GET api/items/:find
+// @route   GET api/items/search/:text
 // @desc    Get Items By searchAndType
 // @access  Public
 router.get('/search/:text', (req, res) => {

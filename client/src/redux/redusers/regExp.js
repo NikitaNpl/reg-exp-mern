@@ -21,7 +21,7 @@ const regExp = (state = initialState, action) => {
     }
     case 'SET_UnLike': {
       const newItemsLikes = state.itemsLikes.filter(id => id !== action.payload);
-      
+
       return {
         ...state,
         itemsLikes: newItemsLikes
@@ -29,8 +29,8 @@ const regExp = (state = initialState, action) => {
     }
     case 'SET_OneRegExp': {
       const newItems = state.items.map((item) => {
-        if(item._id === action.payload._id) {
-          return action.payload;
+        if (item._id === action.item._id) {
+          return action.item;
         }
         return item;
       });

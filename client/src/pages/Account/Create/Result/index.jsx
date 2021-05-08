@@ -11,9 +11,9 @@ function Result() {
     let newItem = {};
     topics.forEach((topic) => {
       if (topic.tag === "categoriesId") {
-        newItem = { ...newItem, "color": topic.info.color} 
+        newItem = { ...newItem, "color": topic.info?.color} 
       }
-      newItem = { ...newItem, [topic.tag]: topic.info}
+      newItem = { ...newItem, [topic.tag]: topic?.info}
     })
     setItems(newItem);
   }, [topics]);

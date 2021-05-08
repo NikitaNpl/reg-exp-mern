@@ -7,6 +7,11 @@ export const setPrevPage = () => ({
   type: 'SET_PREV_PAGE'
 })
 
+export const setCurrentPage = (currentPage) => ({
+  type: 'SET_CURRENT_PAGE',
+  currentPage
+})
+
 export const setTopics = (topics) => ({
   type: 'SET_TOPICS',
   topics

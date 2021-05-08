@@ -3,16 +3,19 @@ import React from 'react';
 import { Cart, CartLoadingBlock } from '../../components/index';
 
 
-const Home = React.memo(function Home({ items, isLoaded }) {
+const Home = React.memo(function Home({ items, isLoaded, isDemo, isViewed, isFavorites }) {
 
   return (
     <div className="main container">
       {isLoaded ? (
-        !!items.length ? (
+        !!items?.length ? (
           items.map((item) => (
             <Cart
               key={item._id}
               items={item}
+              isDemo={isDemo}
+              isViewed={isViewed}
+              isFavorites={isFavorites}
             />
           ))
         ) : <h2>Не удалось найти 😕</h2>

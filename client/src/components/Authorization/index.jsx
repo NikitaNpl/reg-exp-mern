@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { useSelector } from "react-redux";
 
 function Authorization() {
-  let { account } = useSelector(({ auth }) => auth);
+  let { account } = useSelector(({ account }) => account);
 
   return (
     <div className="authorization">

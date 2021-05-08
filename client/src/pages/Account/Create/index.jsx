@@ -2,7 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Route, Switch, Redirect, withRouter } from 'react-router-dom';
 
-import { setTopics, setTests, setNextPage, setPrevPage } from "../../../redux/actions/create";
+import { setTopics, setTests, setNextPage, setPrevPage, setCurrentPage } from "../../../redux/actions/create";
 
 import Creation from "./Creation";
 import Verification from "./Verification";
@@ -18,13 +18,14 @@ function Create(props) {
   let { currentPage, topics, tests } = useSelector(({ create }) => create)
 
   React.useEffect(() => {
+    dispatch(setCurrentPage(1));
     dispatch(setTopics(JSONdataCreate));
     dispatch(setTests(JSONdataVerification));
   }, [dispatch]);
 
   React.useEffect(() => {
     props.history.push(`/account/create/${currentPage}`);
-  }, [props.history, currentPage])
+  }, [props.history, currentPage]);
 
   React.useEffect(() => {
     const isFilled = topics.every((topic) => topic.isApproved === true);
@@ -50,7 +51,7 @@ function Create(props) {
   }
 
   return (
-    <div className="creation-block">
+    <div className="creation-block container">
       <div className="page">
         <Switch>
           <Route

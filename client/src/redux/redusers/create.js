@@ -49,6 +49,11 @@ const create = (state = initialState, action) => {
         ...state,
         currentPage: state.currentPage !== 1 ? state.currentPage - 1 : state.currentPage
       }
+    case 'SET_CURRENT_PAGE': 
+      return {
+        ...state,
+        currentPage: action.currentPage
+      }
     case 'SET_TOPICS':
       return {
         ...state,

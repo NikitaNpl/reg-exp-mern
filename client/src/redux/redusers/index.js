@@ -3,13 +3,13 @@ import { combineReducers } from 'redux';
 import regExp from './regExp';
 import categories from './categories';
 import create from './create';
-import auth from './auth';
+import account from './account';
 
 const rootReducer = combineReducers({
   categories,
   regExp,
   create,
-  auth,
+  account,
 })
 
 export default rootReducer;

@@ -4,7 +4,7 @@ export const fetchRegExp = (category, text) => (dispatch) => {
   dispatch(setLoaded(false));
   axios
     .get(
-      `api/items/${category !== null ? `search/${category}` : ''
+      `/api/items/${category !== null ? `search/${category}` : ''
       }${text !== "" ? `search/${text}` : ''}`
     )
     .then(({ data }) => {
@@ -14,7 +14,7 @@ export const fetchRegExp = (category, text) => (dispatch) => {
 
 export const fetchLike = (itemId) => (dispatch) => {
   axios
-    .patch(`api/items/like/${itemId}`)
+    .patch(`/api/items/like/${itemId}`)
     .then(({ data }) => {
       dispatch(setLike(data.itemId));
       dispatch(fetchOneRegExp(data.itemId));
@@ -23,7 +23,7 @@ export const fetchLike = (itemId) => (dispatch) => {
 
 export const fetchUnLike = (itemId) => (dispatch) => {
   axios
-    .patch(`api/items/unlike/${itemId}`)
+    .patch(`/api/items/unlike/${itemId}`)
     .then(({ data }) => {
       dispatch(setUnLike(data.itemId));
       dispatch(fetchOneRegExp(data.itemId));
@@ -32,7 +32,7 @@ export const fetchUnLike = (itemId) => (dispatch) => {
 
 export const fetchViews = (itemId) => (dispatch) => {
   axios
-    .patch(`api/items/views/${itemId}`)
+    .patch(`/api/items/views/${itemId}`)
     .then(({ data }) => {
       dispatch(fetchOneRegExp(data.itemId));
     })
@@ -41,7 +41,7 @@ export const fetchViews = (itemId) => (dispatch) => {
 export const fetchOneRegExp = (id) => (dispatch) => {
   axios
     .get(
-      `api/items/${id !== undefined ? id : ''}`
+      `/api/items/${id !== undefined ? id : ''}`
     )
     .then(({ data }) => {
       dispatch(setOneRegExp(...data))
@@ -60,7 +60,7 @@ export const setRegExp = (items) => ({
 
 export const setOneRegExp = (item) => ({
   type: 'SET_OneRegExp',
-  payload: item,
+  item
 })
 
 export const setLike = (itemId) => ({
