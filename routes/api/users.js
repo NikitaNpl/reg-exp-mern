@@ -52,7 +52,8 @@ router.get('/oauth-callback/:code?', (req, res) => {
               githubID: String(data.id),
               name: String(data.name),
               login: String(data.login)
-            }).then(item => res.status(200).json(item))
+            }).then(item => res.redirect(`./github-auth?data=${item}`))
+            // res.status(200).json(item)
           );
         })
         .catch(err => res.status(502).json({ err: `${err}` }));
