@@ -1,7 +1,8 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { Header, GitHubAuth, gitOauth } from './components';
+import { Header, GitHubAuth } from './components';
+import gitOauth from './components/gitOauth'
 import { Home, Account } from './pages';
 
 function App() {
