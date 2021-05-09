@@ -48,7 +48,7 @@ router.get('/oauth-callback/:code?', (req, res) => {
         }
       ])
         .then((items) => {
-          items.length ? res.redirect(`/github-auth?data=${item}`) : (
+          items.length ? res.redirect(`/github-auth?data=${items}`) : (
             Users.insertOne({
               githubID: String(data.id),
               name: String(data.name),
