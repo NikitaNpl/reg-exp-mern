@@ -10,9 +10,9 @@ function GitHub() {
   let { account } = useSelector(({ account }) => account);
 
   const fetchAccount = React.useCallback(() => {
-    const code = new URLSearchParams(window.location.search).get('code');
-    if (code) {
-      dispatch(setAccount(code));
+    const data = new URLSearchParams(window.location.search).get('data');
+    if (data) {
+      dispatch(setAccount(data));
     } else {
       window.location.replace("./");
     }
