@@ -13,6 +13,7 @@ const clientSecret = '50249d0d3d508a50f1cecded2ec51a905f80a062';
 // @desc    Get An User
 // @access  Public
 router.get('/oauth-callback/:code?', (req, res) => {
+  console.log(req.query.code)
   const requestToken = req.query.code;
   if (!requestToken) {
     return res.send({
@@ -47,12 +48,13 @@ router.get('/oauth-callback/:code?', (req, res) => {
         }
       ])
         .then((items) => {
-          items.length ? res.status(200).json(items) : (
+          items.length ? res.redirect(`/github-auth?data=${items}`) : (
             Users.insertOne({
               githubID: String(data.id),
               name: String(data.name),
               login: String(data.login)
-            }).then(item => res.status(200).json(item))
+            }).then(item => res.redirect(`/github-auth?data=${item}`))
+            // res.status(200).json(item)
           );
         })
         .catch(err => res.status(502).json({ err: `${err}` }));
