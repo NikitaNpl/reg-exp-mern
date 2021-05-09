@@ -1,7 +1,7 @@
 import React from 'react';
 import { Route, Switch } from 'react-router-dom';
 
-import { Header, GitHubAuth, GitHubAuth2 } from './components';
+import { Header, GitHubAuth, gitOauth } from './components';
 import { Home, Account } from './pages';
 
 function App() {
@@ -12,7 +12,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/account" component={Account} />
         <Route path="/oauth-callback" component={GitHubAuth} />
-        <Route path="/github-auth" component={GitHubAuth2} />
+        <Route path="/github-auth" component={gitOauth} />
       </Switch>
     </div>
   );

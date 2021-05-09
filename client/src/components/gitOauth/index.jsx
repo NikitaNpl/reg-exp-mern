@@ -4,7 +4,7 @@ import { useHistory } from "react-router-dom";
 
 import { fetchGitHubAPI, setAccount } from "../../redux/actions/account";
 
-const GitHubAuth = () => {
+const gitOauth = () => {
   const history = useHistory();
   const dispatch = useDispatch();
   let { account } = useSelector(({ account }) => account);
@@ -32,4 +32,4 @@ const GitHubAuth = () => {
   )
 }
 
-export default GitHubAuth;
+export default gitOauth;
