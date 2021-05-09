@@ -15,12 +15,16 @@ app.use(bodyParser.json());
 const db = require('./config/keys.js').mongoURI;
 // Connect to MongoDB
 mongoose
-  .connect(db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(process.env.MONGODB_URI || db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.log(err));
 
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
+
+if (process.env.NODE_ENV === 'production') {
+  app.use(express.static('client/build'))
+}
 
 // Use Routes
 app.use('/api/items', items);
