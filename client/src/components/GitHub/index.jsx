@@ -1,18 +1,18 @@
-import React from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import React from 'react';
+import { useSelector, useDispatch } from "react-redux"
 import { useHistory } from "react-router-dom";
 
-import { fetchGitHubAPI, setAccount } from "../../redux/actions/account";
+import {setAccount} from "../../redux/actions/account";
 
-const gitOauth = () => {
+function GitHub() {
   const history = useHistory();
   const dispatch = useDispatch();
   let { account } = useSelector(({ account }) => account);
 
   const fetchAccount = React.useCallback(() => {
-    const data = new URLSearchParams(window.location.search).get('data');
-    if (data) {
-      dispatch(setAccount(data));
+    const code = new URLSearchParams(window.location.search).get('code');
+    if (code) {
+      dispatch(setAccount(code));
     } else {
       window.location.replace("./");
     }
@@ -32,4 +32,4 @@ const gitOauth = () => {
   )
 }
 
-export default gitOauth;
+export default GitHub;
