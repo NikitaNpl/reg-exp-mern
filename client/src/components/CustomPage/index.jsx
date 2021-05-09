@@ -1,5 +1,6 @@
 import React from 'react'
 import { useDispatch } from 'react-redux';
+import { useHistory } from "react-router-dom";
 
 import { createRegExp } from '../../redux/actions/account';
 
@@ -8,11 +9,13 @@ import CustomInput from './CustomInput';
 import Cart from '../Cart';
 
 function CustomPage({ pageNumber, pageHeader, items, selectedItem, pattern, cartItems, isDemo }) {
+  const history = useHistory();
   const dispatch = useDispatch();
   console.log(cartItems)
 
   const handlerClickConfirm = () => {
     dispatch(createRegExp(cartItems));
+    history.push("/");
   }
 
   return (
