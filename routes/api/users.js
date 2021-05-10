@@ -31,7 +31,7 @@ router.get('/oauth-callback/:code?', (req, res) => {
     }
   }).then((response) => {
     const accessToken = response.data.access_token;
-    return accessToken;
+    res.redirect(`/github-auth?access_token=${accessToken}`)
   })
     .then((accessToken) => {
       return axios({
