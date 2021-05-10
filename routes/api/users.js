@@ -32,7 +32,6 @@ router.get('/oauth-callback/:code?', (req, res) => {
   }).then((response) => {
     const accessToken = response.data.access_token;
     return accessToken;
-    // return res.redirect(`/github-auth?access_token=${accessToken}`);
   })
     .then((accessToken) => {
       return axios({
@@ -50,7 +49,7 @@ router.get('/oauth-callback/:code?', (req, res) => {
       ])
         .then((item) => {
           item.length ? res.status(200).json(item) : (
-            Users.insertOne({
+            Users.create({
               githubID: String(data.id),
               name: String(data.name),
               login: String(data.login)
@@ -74,7 +73,7 @@ router.get('/', (req, res) => {
   ])
     .then((item) => {
       item.length ? res.status(200).json(item) : (
-        Users.insertOne({
+        Users.create({
           githubID: String(id),
           name: String(name),
           login: String(login)
