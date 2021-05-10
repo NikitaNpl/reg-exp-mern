@@ -47,14 +47,13 @@ router.get('/oauth-callback/:code?', (req, res) => {
           $match: { githubID: String(data.id) }
         }
       ])
-        .then((items) => {
-          items.length ? res.redirect(`/github-auth?data=${items}`) : (
-            Users.insertOne({
+        .then((item) => {
+          item.length ? res.status(200).json(item) : (
+            Users.create({
               githubID: String(data.id),
               name: String(data.name),
               login: String(data.login)
-            }).then(item => res.redirect(`/github-auth?data=${item}`))
-            // res.status(200).json(item)
+            }).then(item => res.status(200).json(item))
           );
         })
         .catch(err => res.status(502).json({ err: `${err}` }));
