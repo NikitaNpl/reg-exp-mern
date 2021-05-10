@@ -45,7 +45,7 @@ app.get('/oauth-callback', (req, res) => {
   }).then((response) => {
     const accessToken = response.data.access_token
     res.redirect(`/github-auth?access_token=${accessToken}`)
-  })
+  }).catch(err => res.status(502).json({ err: `${err}` }));
 });
 
 const port = process.env.PORT || 5000;
