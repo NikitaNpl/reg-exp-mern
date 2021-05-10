@@ -12,11 +12,11 @@ function Account() {
   const history = useHistory();
   let { account } = useSelector(({ account }) => account)
 
-  // React.useEffect(() => {
-  //   if (!Object.keys(account).length) {
-  //     history.push("/");
-  //   }
-  // }, [history, account]);
+  React.useEffect(() => {
+    if (!Object.keys(account).length) {
+      history.push("/");
+    }
+  }, [history, account]);
 
   const isSelected = (link) => {
     const splitPathname = history.location.pathname.split("/");
