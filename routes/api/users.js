@@ -61,28 +61,6 @@ router.get('/oauth-callback/:code?', (req, res) => {
     })
 });
 
-// @route   GET api/users/:data?
-// @desc    Get An User
-// @access  Public
-router.get('/', (req, res) => {
-  const { id, name, login } = req.body;
-  Users.aggregate([
-    {
-      $match: { githubID: String(id) }
-    }
-  ])
-    .then((item) => {
-      item.length ? res.status(200).json(item) : (
-        Users.create({
-          githubID: String(id),
-          name: String(name),
-          login: String(login)
-        }).then(item => res.status(200).json(item))
-      );
-    })
-    .catch(err => res.status(502).json({ err: `${err}` }));
-});
-
 // @route   GET api/users/:id
 // @desc    Get User By ID
 // @access  Public

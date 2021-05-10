@@ -8,26 +8,6 @@ export const fetchGitHubAPI = (code) => (dispatch) => {
     }).catch(err => console.log(err));
 }
 
-export const fetchDataGitHubUser = (accessToken) => (dispatch) => {
-  axios
-    .get('https://api.github.com/user', {
-      headers: {
-        Authorization: 'token ' + accessToken
-      }
-    })
-  .then(({ data }) => {
-    dispatch(fetchGetUser(data));
-  }).catch(err => console.log(err));
-}
-
-export const fetchGetUser = (data) => (dispatch) => {
-  axios
-    .get('/api/users/', data)
-    .then(({ data }) => {
-      dispatch(setAccount(...data));
-    }).catch(err => console.log(err));
-}
-
 export const setAccount = (payload) => ({
   type: 'SET_ACCOUNT',
   payload,
