@@ -14,7 +14,7 @@ function App() {
         <Route exact path="/" component={Home} />
         <Route path="/account" component={Account} />
         <Route path="/oauth-callback" component={GitHubAuth} />
-        <Route path="/github-auth" component={GitHubAuthForHeroku} />
+        <Route path="/api/users/github-auth" component={GitHubAuthForHeroku} />
       </Switch>
     </div>
   );
