@@ -27,30 +27,15 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'))
+  app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname + '/client/build/index.html'));
+  });
 }
-
-app.get('/*', function (req, res) {
-  res.sendFile(path.join(__dirname, 'build', 'index.html'));
-});
 
 // Use Routes
 app.use('/api/items', items);
 app.use('/api/categories', categories);
 app.use('/api/users', users);
-app.get('/test', (req, res) => {
-  const requestToken = req.query.code;
-
-  axios({
-    method: 'post',
-    url: `https://github.com/login/oauth/access_token?client_id=${clientID}&client_secret=${clientSecret}&code=${requestToken}`,
-    headers: {
-      accept: 'application/json'
-    }
-  }).then((response) => {
-    const accessToken = response.data.access_token
-    res.redirect(`/github-auth?access_token=${accessToken}`)
-  }).catch(err => res.status(502).json({ err: `${err}` }));
-});
 
 const port = process.env.PORT || 5000;
 
