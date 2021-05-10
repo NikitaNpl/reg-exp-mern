@@ -47,19 +47,40 @@ router.get('/oauth-callback/:code?', (req, res) => {
           $match: { githubID: String(data.id) }
         }
       ])
-        .then((items) => {
-          items.length ? res.redirect(`/github-auth?data=${items}`) : (
+        .then((item) => {
+          item.length ? res.status(200).json(item) : (
             Users.insertOne({
               githubID: String(data.id),
               name: String(data.name),
               login: String(data.login)
-            }).then(item => res.redirect(`/github-auth?data=${item}`))
-            // res.status(200).json(item)
+            }).then(item => res.status(200).json(item))
           );
         })
         .catch(err => res.status(502).json({ err: `${err}` }));
       // res.redirect(`/?name=${data.login}`);
     })
+});
+
+// @route   GET api/users/:data?
+// @desc    Get An User
+// @access  Public
+router.get('/', (req, res) => {
+  const { id, name, login } = req.body;
+  Users.aggregate([
+    {
+      $match: { githubID: String(id) }
+    }
+  ])
+    .then((item) => {
+      item.length ? res.status(200).json(item) : (
+        Users.insertOne({
+          githubID: String(id),
+          name: String(name),
+          login: String(login)
+        }).then(item => res.status(200).json(item))
+      );
+    })
+    .catch(err => res.status(502).json({ err: `${err}` }));
 });
 
 // @route   GET api/users/:id
