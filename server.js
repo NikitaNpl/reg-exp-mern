@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === 'production') {
 app.use('/api/items', items);
 app.use('/api/categories', categories);
 app.use('/api/users', users);
-app.get('/oauth-callback', (req, res) => {
+app.get('/test', (req, res) => {
   const requestToken = req.query.code;
 
   axios({
