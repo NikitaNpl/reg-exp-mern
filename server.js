@@ -7,13 +7,11 @@ const items = require('./routes/api/items');
 const categories = require('./routes/api/categories');
 const users = require('./routes/api/users');
 
-const clientID = '8382cfd78e2814de8811';
-const clientSecret = '50249d0d3d508a50f1cecded2ec51a905f80a062';
-
 const app = express();
 
 // BodyParser Middleware
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 
 // DB Config
 const db = require('./config/keys.js').mongoURI;
@@ -22,9 +20,6 @@ mongoose
   .connect(process.env.MONGODB_URI || db, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.log(err));
-
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
 
 // Use Routes
 app.use('/api/items', items);
