@@ -2,6 +2,8 @@ const express = require('express');
 const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const path = require('path');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json');
 
 const items = require('./routes/api/items');
 const categories = require('./routes/api/categories');
@@ -25,6 +27,8 @@ mongoose
 app.use('/api/items', items);
 app.use('/api/categories', categories);
 app.use('/api/users', users);
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 if (process.env.NODE_ENV === 'production') {
   app.use(express.static('client/build'));
