@@ -9,12 +9,6 @@
       "url": "http://localhost:5000"
     }
   ],
-  "tags": [
-    {
-      "name": "API functions",
-      "description": "API functions of our application"
-    }
-  ],
   "paths": {
     "/api/items/": {
       "get": {
@@ -178,6 +172,128 @@
           }
         }
       }
+    },
+    "/api/items/{id}": {
+      "get": {
+        "summary": "returns data by id regular expression",
+        "tags": [
+          "regular expression"
+        ],
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "required": true,
+            "schema": {
+              "type": "string",
+              "example": "5fddf22ec0a636d64dc16927"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "document": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string"
+                      },
+                      "title": {
+                        "type": "string"
+                      },
+                      "pattern": {
+                        "type": "string"
+                      },
+                      "placeholder": {
+                        "type": "string"
+                      },
+                      "rating": {
+                        "type": "object"
+                      },
+                      "additionalInfo\"": {
+                        "type": "object"
+                      },
+                      "color\"": {
+                        "type": "object"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "_id": "5fddf22ec0a636d64dc16927",
+                      "title": "Никнейм",
+                      "description": "Никнейм состоящий от 3 до 16 символов. Допускаются: буквы (a-zA-z), цифры, дефис и нижнее подчеркивание",
+                      "pattern": "/^[a-zA-Z0-9_-]{3,16}$/",
+                      "placeholder": "Nickname_",
+                      "rating": {
+                        "likes": 5,
+                        "views": 22
+                      },
+                      "additionalInfo": {
+                        "_id": "5fde3f2fc0a636d64dc1692e",
+                        "name": "Строки",
+                        "colorId": "5fe8c0eed14a9e7eab184d25"
+                      },
+                      "color": {
+                        "_id": "5fe8c0eed14a9e7eab184d25",
+                        "hex": "#eb5757",
+                        "name": "red"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/categories/": {
+      "get": {
+        "summary": "кeturns all data on available regular expression categories",
+        "tags": [
+          "categories"
+        ],
+        "responses": {
+          "200": {
+            "description": "OK",
+            "content": {
+              "document": {
+                "schema": {
+                  "type": "array",
+                  "items": {
+                    "type": "object",
+                    "properties": {
+                      "_id": {
+                        "type": "string"
+                      },
+                      "name": {
+                        "type": "string"
+                      }
+                    }
+                  },
+                  "example": [
+                    {
+                      "_id": "5fde3f2fc0a636d64dc1692e",
+                      "name": "Строки",
+                      "color": {
+                        "_id": "5fe8c0eed14a9e7eab184d25",
+                        "hex": "#f2c94c",
+                        "name": "yellow"
+                      }
+                    }
+                  ]
+                }
+              }
+            }
+          }
+        }
+      }
     }
   },
   "components": {
@@ -185,6 +301,9 @@
       "regExp": {
         "type": "object",
         "properties": {
+          "_id": {
+            "type": "string"
+          },
           "title": {
             "type": "string"
           },
@@ -202,6 +321,29 @@
           },
           "creator": {
             "type": "string"
+          }
+        }
+      },
+      "categories": {
+        "type": "object",
+        "properties": {
+          "_id": {
+            "type": "string"
+          },
+          "title": {
+            "type": "string"
+          },
+          "color": {
+            "type": "object",
+            "_id": {
+              "type": "string"
+            },
+            "hex": {
+              "type": "string"
+            },
+            "name": {
+              "type": "string"
+            }
           }
         }
       }
