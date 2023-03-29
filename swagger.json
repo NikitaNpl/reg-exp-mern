@@ -255,7 +255,7 @@
     },
     "/api/categories/": {
       "get": {
-        "summary": "кeturns all data on available regular expression categories",
+        "summary": "returns all data on available regular expression categories",
         "tags": [
           "categories"
         ],

@@ -1,6 +1,7 @@
 import React from 'react';
 
-import { Button, CategoriesLoadingBlock } from '../index';
+import Button from 'components/Button';
+import LoadingBlock from "./LoadingBlock"
 
 const Categories = React.memo(function Categories({ items, isLoaded, onSelectCategories, selectedItem, onWriteSearchBox }) {
   const searchRef = React.useRef("");
@@ -25,7 +26,7 @@ const Categories = React.memo(function Categories({ items, isLoaded, onSelectCat
               key={item._id}
               className={`border-${item.color.name} ${selectedItem === item.name ? 'active' : ''}`}
             >{item.name}</li>
-          )) : Array(6).fill(0).map((_, index) => <CategoriesLoadingBlock key={index} className="loadingBlock" />
+          )) : Array(6).fill(0).map((_, index) => <LoadingBlock key={index} className="loadingBlock" />
           )}
         </ul>
       </div>
