@@ -1,24 +1,38 @@
 let db = connect("mongodb://admin:password@localhost:27017")
 
-db = db.getSibilingDB('regexp_library')
+db = db.getSiblingDB('regexp_library')
 
-// db.createUser(
-//     {
-//         user: "user",
-//         pwd: "pass",
-//         roles: [ { role: "readWrite", db: "regexp_library"} ],
-//     }
-// )
+db.createUser(
+    {
+        user: "user",
+        pwd: "pass",
+        roles: [ { role: "readWrite", db: "regexp_library"} ],
+    }
+)
 
-db.createCollections('colors')
-db.categories.insertOne({
-    hex: "#d2d2d2",
+db.createCollection('colors');
+
+db.colors.insertOne({
+    hex: "d2d2d2",
     name: "gray"
-    }).then((result) => {
-        db.createCollections('categories')
-        db.categories.insertOne({
-        name: "Строки",
-        colorId: result.ops._id
-            });
-    });
+})
 
+db.createCollection('categories')
+
+// db.categories.insertOne({
+//     name: "Строки",
+//     colorId: db.find()
+// })
+
+// const insertData = async () => {
+//     const { ops } = await db.colors.insertOne({
+//         hex: "#d2d2d2",
+//         name: "gray"
+//         })
+    
+//         db.createCollection('categories');
+//         db.categories.insertOne({
+//         name: "Строки",
+//         colorId: ops._id});
+// }
+// insertData()
