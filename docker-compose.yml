@@ -1,0 +1,19 @@
+version: "3.8"
+services:
+  client:
+    build: ./client
+    depends_on:
+      - backend
+    ports:
+      - 3000:3000
+    networks:
+      - reg-app
+  backend:
+    build: ./backend
+    ports:
+      - 5000:5000
+    networks:
+      - reg-app
+networks:
+  reg-app:
+    driver: bridge
