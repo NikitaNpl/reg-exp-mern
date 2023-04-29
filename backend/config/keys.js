@@ -1,3 +1,3 @@
 module.exports = {
-  mongoURI: 'mongodb+srv://naiple:12345@cluster0.6j3v6.mongodb.net/<dbname>?retryWrites=true&w=majority' 
+  mongoURI: 'mongodb://mongodb:27017/regexp_library'
 }
