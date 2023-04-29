@@ -7,13 +7,31 @@ services:
     ports:
       - 3000:3000
     networks:
-      - reg-app
+      - reg-network
   backend:
     build: ./backend
+    environment:
+      - username=admin
+      - password=password
+    depends_on:
+      - mongodb
     ports:
       - 5000:5000
     networks:
-      - reg-app
+      - reg-network
+  mongodb:
+    image: "mongo"
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - 27017:27017
+    volumes:
+      - './mongo_scripts/init_db.js:/docker-entrypoint-initdb.d/init.js:ro'
+    command: mongod --auth
+    networks:
+      - reg-network
+
 networks:
-  reg-app:
+  reg-network:
     driver: bridge
