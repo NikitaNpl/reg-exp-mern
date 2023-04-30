@@ -1,0 +1,10 @@
+{
+    "name": "@regexp-library/docker",
+    "version": "1.0.0",
+    "private": true, 
+    "workspaces": ["backend/*", "client/*", "docker/*"],
+    "scripts": {
+        "start": "docker compose up -d --remove-orphans --build",
+        "stop": "docker compose down"
+    }
+}
