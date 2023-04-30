@@ -1,15 +1,16 @@
 version: "3.8"
 services:
   client:
-    build: ./client
+    build: ../client
     depends_on:
       - backend
     ports:
       - 3000:3000
     networks:
       - reg-network
+
   backend:
-    build: ./backend
+    build: ../backend
     environment:
       - username=admin
       - password=password
@@ -19,6 +20,7 @@ services:
       - 5000:5000
     networks:
       - reg-network
+      
   mongodb:
     image: "mongo"
     environment:
@@ -27,7 +29,7 @@ services:
     ports:
       - 27019:27017
     volumes:
-      - ./mongo_scripts/init_db.js:/docker-entrypoint-initdb.d/init_db.js:ro
+      - "./mongo_scripts/init_db.js:/docker-entrypoint-initdb.d/init_db.js:ro"
     command: mongod --auth
     networks:
       - reg-network
