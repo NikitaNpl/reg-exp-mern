@@ -1,0 +1,36 @@
+version: "3.8"
+services:
+  client:
+    build: ../client
+    depends_on:
+      - backend
+    ports:
+      - 3000:3000
+    networks:
+      - mern-network
+
+  backend:
+    build: ../backend
+    depends_on:
+      - mongodb
+    ports:
+      - 5000:5000
+    networks:
+      - mern-network
+      
+  mongodb:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: admin
+      MONGO_INITDB_ROOT_PASSWORD: password
+    ports:
+      - 27019:27017
+    volumes:
+      - "./mongo_scripts/init_db.js:/docker-entrypoint-initdb.d/init_db.js:ro"
+    command: mongod --auth
+    networks:
+      - mern-network
+
+networks:
+  mern-network:
+    driver: bridge

@@ -13,11 +13,11 @@ const app = express();
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 
-// DB Config
-const db = require('./config/keys.js').mongoURI;
+// DB-URI Config
+const dbUri = process.env.MONGODB_URI || require('./config/keys.js').mongoURI;
 // Connect to MongoDB
 mongoose
-  .connect(process.env.MONGODB_URI || db, { useNewUrlParser: true, useUnifiedTopology: true })
+  .connect(dbUri, { useNewUrlParser: true, useUnifiedTopology: true })
   .then(() => console.log('MongoDB connected'))
   .catch((err) => console.log(err));
 
@@ -27,9 +27,9 @@ app.use('/api/categories', categories);
 app.use('/api/users', users);
 
 if (process.env.NODE_ENV === 'production') {
-  app.use(express.static('client/build'));
+  app.use(express.static('../client/build'));
   app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, '../client', 'build', 'index.html'));
   });
 }
 

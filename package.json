@@ -1,29 +1,11 @@
 {
-  "name": "reg-exp",
-  "version": "1.0.0",
-  "description": "RegExp Library",
-  "main": "server.js",
-  "scripts": {
-    "client-install": "npm install --prefix client",
-    "build": "cd client && npm run build",
-    "install-client": "cd client && npm install",
-    "heroku-postbuild": "npm run install-client && npm run build",
-    "start": "node server.js",
-    "server": "nodemon server.js",
-    "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run server\" \"npm run client\""
-  },
-  "author": "Nikita Romanovich",
-  "license": "ISC",
-  "dependencies": {
-    "axios": "^0.21.1",
-    "body-parser": "^1.19.0",
-    "concurrently": "^5.3.0",
-    "experss": "^0.0.1-security",
-    "express": "^4.17.1",
-    "mongoose": "^5.11.8"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.6"
-  }
+    "name": "@regexp-library/regexp-library",
+    "version": "1.0.0",
+    "private": true, 
+    "workspaces": ["backend", "client", "docker"],
+    "scripts": {
+        "backend": "npm --workspace=@regexp-library/backend run",
+        "client": "npm --workspace=@regexp-library/client run",
+        "docker": "npm --workspace=@regexp-library/docker run"
+    }
 }

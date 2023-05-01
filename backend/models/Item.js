@@ -23,7 +23,7 @@ const ItemSchema = new Schema({
     type: Object,
     required: true,
     likes: Number,
-    wiews: Number
+    views: Number
   },
   creator: {
     type: String,
