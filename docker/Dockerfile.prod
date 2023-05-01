@@ -1,0 +1,15 @@
+FROM node:16
+
+WORKDIR /usr/src/app
+
+COPY package*.json ./
+
+RUN npm install --prefix ../backend
+
+RUN npm install --prefix ../client
+
+RUN npm --prefix ../client build
+
+COPY . .
+
+CMD ["npm", "run", "start", "--prefix", "../backend"]

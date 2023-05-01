@@ -4,7 +4,7 @@
     "private": true, 
     "workspaces": ["backend/*", "client/*", "docker/*"],
     "scripts": {
-        "start": "docker compose up -d --remove-orphans --build",
-        "stop": "docker compose down"
+        "start": "docker compose -f docker-compose-dev.yml up -d --remove-orphans --build",
+        "stop": "docker compose -f docker-compose-dev.yml down"
     }
 }

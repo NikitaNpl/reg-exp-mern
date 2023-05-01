@@ -1,0 +1,23 @@
+version: "3.8"
+services:
+  client:
+    image: client-prod
+    restart: unless-stopped
+    depends_on:
+      - backend
+    ports:
+      - 3000:3000
+    networks:
+      - reg-network
+
+  backend:
+    image: backend-prod
+    restart: unless-stopped
+    ports:
+      - 5000:5000
+    networks:
+      - reg-network
+
+networks:
+  reg-network:
+    driver: bridge
