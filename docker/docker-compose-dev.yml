@@ -7,22 +7,19 @@ services:
     ports:
       - 3000:3000
     networks:
-      - reg-network
+      - mern-network
 
   backend:
     build: ../backend
-    environment:
-      - username=admin
-      - password=password
     depends_on:
       - mongodb
     ports:
       - 5000:5000
     networks:
-      - reg-network
+      - mern-network
       
   mongodb:
-    image: "mongo"
+    image: mongo
     environment:
       MONGO_INITDB_ROOT_USERNAME: admin
       MONGO_INITDB_ROOT_PASSWORD: password
@@ -32,8 +29,8 @@ services:
       - "./mongo_scripts/init_db.js:/docker-entrypoint-initdb.d/init_db.js:ro"
     command: mongod --auth
     networks:
-      - reg-network
+      - mern-network
 
 networks:
-  reg-network:
+  mern-network:
     driver: bridge

@@ -1,0 +1,5 @@
+build:
+  dockerfile: Dockerfile.prod
+
+run:
+  containerPort: 5000
