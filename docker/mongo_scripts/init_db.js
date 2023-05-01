@@ -25,26 +25,48 @@ const generateColorsCollection = () => {
     return result;
 }
 
-const generateCategoriesCollection = (collorsIds) => {
+const generateCategoriesCollection = (colorsIds) => {
     db.createCollection('categories');
 
     const categories = ["Строки", "Почта", "URL", "Цифры", "Дата и время", "Другое"];
-    const preparedCategories = getPreparedCategoriesToInsert(categories, collorsIds);
+    const preparedCategories = getPreparedCategoriesToInsert(categories, colorsIds);
     const result = db.categories.insertMany(preparedCategories);
 
     return result;
 };
 
-const getPreparedCategoriesToInsert = (categories, collorsIds) => {
+const getPreparedCategoriesToInsert = (categories, colorsIds) => {
     return categories.map((category, index) => ({
         name: category,
-        colorId: ObjectId(collorsIds[index]),
+        colorId: ObjectId(colorsIds[index]),
     }));
 }
 
-const collorsIds = generateColorsCollection().insertedIds;
-generateCategoriesCollection(collorsIds);
+const colorsIds = generateColorsCollection().insertedIds;
+generateCategoriesCollection(colorsIds);
 
+db.createCollection('items')
 
+db.items.insertOne({
+    "title": "E-Mail формат",
+    "description": "Проверка почты на корректность",
+    "pattern": "/^([A-Z|a-z|0-9](\\.|_){0,1})+[A-Z|a-z|0-9]\\@([A-Z|a-z|0-9])+((\\.){0,1}[A-Z|a-z|0-9]){2}\\.[a-z]{2,3}$/gm",
+    "placeholder": "my@email.com",
+    "rating": {
+        likes: 4,
+        views: 19
+    },
+    "categoriesId": db.categories.findOne({name: "Почта"})._id
+})
 
-
+db.items.insertOne({
+    "title": "Никнейм",
+    "description": "Никнейм состоящий от 3 до 16 символов. Допускаются: буквы (a-zA-z), цифры, дефис и нижнее подчеркивание",
+    "pattern": "/^[a-zA-Z0-9_-]{3,16}$/",
+    "placeholder": "Nickname_",
+    "rating": {
+        likes: 5,
+        views: 22
+    },
+    "categoriesId": db.categories.findOne({name: "Строки"})._id
+})
