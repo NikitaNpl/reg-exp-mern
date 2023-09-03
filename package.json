@@ -1,11 +1,13 @@
 {
     "name": "@regexp-library/regexp-library",
     "version": "1.0.0",
-    "private": true, 
-    "workspaces": ["backend", "client", "docker"],
+    "private": true,
+    "workspaces": [
+        "packages/**"
+    ],
     "scripts": {
-        "backend": "npm --workspace=@regexp-library/backend run",
-        "client": "npm --workspace=@regexp-library/client run",
+        "api": "npm --workspace=@regexp-library/api run",
+        "web": "npm --workspace=@regexp-library/web run",
         "docker": "npm --workspace=@regexp-library/docker run"
     }
 }

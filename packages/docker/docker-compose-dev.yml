@@ -1,22 +1,22 @@
 version: "3.8"
 services:
-  client:
-    build: ../client
-    depends_on:
-      - backend
-    ports:
-      - 3000:3000
-    networks:
-      - mern-network
+  # client:
+  #   build: ../client
+  #   depends_on:
+  #     - backend
+  #   ports:
+  #     - 3000:3000
+  #   networks:
+  #     - mern-network
 
-  backend:
-    build: ../backend
-    depends_on:
-      - mongodb
-    ports:
-      - 5000:5000
-    networks:
-      - mern-network
+  # backend:
+  #   build: ../backend
+  #   depends_on:
+  #     - mongodb
+  #   ports:
+  #     - 5000:5000
+  #   networks:
+  #     - mern-network
       
   mongodb:
     image: mongo
