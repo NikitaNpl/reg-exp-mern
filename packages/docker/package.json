@@ -1,8 +1,7 @@
 {
     "name": "@regexp-library/docker",
     "version": "1.0.0",
-    "private": true, 
-    "workspaces": ["backend/*", "client/*", "docker/*"],
+    "private": true,
     "scripts": {
         "start": "docker compose -f docker-compose-dev.yml up -d --remove-orphans --build",
         "stop": "docker compose -f docker-compose-dev.yml down"
